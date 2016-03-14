@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2013,2015 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -26,50 +26,42 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#ifndef __MSG_TASK__
+#define __MSG_TASK__
 
-#ifndef LOC_ADAPTER_PROXY_BASE_H
-#define LOC_ADAPTER_PROXY_BASE_H
+#include <LocThread.h>
 
-#include <ContextBase.h>
-#include <gps_extended.h>
-
-namespace loc_core {
-
-class LocAdapterProxyBase {
-private:
-    LocAdapterBase *mLocAdapterBase;
-protected:
-    inline LocAdapterProxyBase(const LOC_API_ADAPTER_EVENT_MASK_T mask,
-                   ContextBase* context):
-                   mLocAdapterBase(new LocAdapterBase(mask, context, this)) {
-    }
-    inline virtual ~LocAdapterProxyBase() {
-        delete mLocAdapterBase;
-    }
-    ContextBase* getContext() const {
-        return mLocAdapterBase->getContext();
-    }
-    inline void updateEvtMask(LOC_API_ADAPTER_EVENT_MASK_T event,
-                              loc_registration_mask_status isEnabled) {
-        mLocAdapterBase->updateEvtMask(event,isEnabled);
-    }
-
-public:
-    inline virtual void handleEngineUpEvent() {};
-    inline virtual void handleEngineDownEvent() {};
-    inline virtual bool reportPosition(UlpLocation &location,
-                                       GpsLocationExtended &locationExtended,
-                                       enum loc_sess_status status,
-                                       LocPosTechMask loc_technology_mask) {
-
-        (void)location;
-        (void)locationExtended;
-        (void)status;
-        (void)loc_technology_mask;
-        return false;
-    }
+struct LocMsg {
+    inline LocMsg() {}
+    inline virtual ~LocMsg() {}
+    virtual void proc() const = 0;
+    inline virtual void log() const {}
 };
 
-} // namespace loc_core
+class MsgTask : public LocRunnable {
+    const void* mQ;
+    LocThread* mThread;
+    friend class LocThreadDelegate;
+protected:
+    virtual ~MsgTask();
+public:
+    MsgTask(LocThread::tCreate tCreator, const char* threadName = NULL, bool joinable = true);
+    MsgTask(const char* threadName = NULL, bool joinable = true);
+    // this obj will be deleted once thread is deleted
+    void destroy();
+    void sendMsg(const LocMsg* msg) const;
+    // Overrides of LocRunnable methods
+    // This method will be repeated called until it returns false; or
+    // until thread is stopped.
+    virtual bool run();
 
-#endif //LOC_ADAPTER_PROXY_BASE_H
+    // The method to be run before thread loop (conditionally repeatedly)
+    // calls run()
+    virtual void prerun();
+
+    // The method to be run after thread loop (conditionally repeatedly)
+    // calls run()
+    inline virtual void postrun() {}
+};
+
+#endif //__MSG_TASK__

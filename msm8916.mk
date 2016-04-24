@@ -80,6 +80,10 @@ PRODUCT_PACKAGES += \
     camera.msm8916 \
     libbson
 
+# CMActions
+PRODUCT_PACKAGES += \
+    CMActions
+
 # Display
 PRODUCT_PACKAGES += \
     gralloc.msm8916 \

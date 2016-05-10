@@ -84,7 +84,6 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # Init
 TARGET_UNIFIED_DEVICE := true
-TARGET_INIT_VENDOR_LIB := libinit_msm
 
 # Keymaster
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true

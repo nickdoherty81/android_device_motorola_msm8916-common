@@ -82,7 +82,7 @@ PRODUCT_PACKAGES += \
 
 # CMActions
 PRODUCT_PACKAGES += \
-    CMActions
+    MotoActions
 
 # Display
 PRODUCT_PACKAGES += \

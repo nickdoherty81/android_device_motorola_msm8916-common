@@ -255,18 +255,46 @@ typedef struct {
     float           speed_unc;
 } GpsLocationExtended;
 
-typedef struct GpsExtLocation_s {
+/** Represents SV status. */
+typedef struct {
+    /** set to sizeof(QcomSvStatus) */
     size_t          size;
-    uint16_t        flags;
-    double          latitude;
-    double          longitude;
-    double          altitude;
-    float           speed;
-    float           bearing;
-    float           accuracy;
-    int64_t         timestamp;
-    uint32_t        sources_used;
-} GpsExtLocation;
+
+    /** Number of SVs currently visible. */
+    int         num_svs;
+
+    /** Contains an array of SV information. */
+    GpsSvInfo   sv_list[GPS_MAX_SVS];
+
+    /** Represents a bit mask indicating which SVs
+     * have ephemeris data.
+     */
+    uint32_t    ephemeris_mask;
+
+    /** Represents a bit mask indicating which SVs
+     * have almanac data.
+     */
+    uint32_t    almanac_mask;
+
+    /**
+     * Represents a bit mask indicating which GPS SVs
+     * were used for computing the most recent position fix.
+     */
+    uint32_t    gps_used_in_fix_mask;
+
+    /**
+     * Represents a bit mask indicating which GLONASS SVs
+     * were used for computing the most recent position fix.
+     */
+    uint32_t    glo_used_in_fix_mask;
+
+    /**
+     * Represents a bit mask indicating which BDS SVs
+     * were used for computing the most recent position fix.
+     */
+    uint64_t    bds_used_in_fix_mask;
+
+} QcomSvStatus;
 
 enum loc_sess_status {
     LOC_SESS_SUCCESS,

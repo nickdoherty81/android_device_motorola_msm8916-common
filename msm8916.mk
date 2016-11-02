@@ -81,8 +81,8 @@ PRODUCT_PACKAGES += \
     libshim_camera
 
 # CMActions
-# PRODUCT_PACKAGES += \
-#    MotoActions
+PRODUCT_PACKAGES += \
+    MotoActions
 
 # Display
 PRODUCT_PACKAGES += \

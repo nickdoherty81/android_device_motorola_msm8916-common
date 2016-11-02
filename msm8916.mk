@@ -80,8 +80,8 @@ PRODUCT_PACKAGES += \
     libbson
 
 # CMActions
-PRODUCT_PACKAGES += \
-    MotoActions
+# PRODUCT_PACKAGES += \
+#    MotoActions
 
 # Display
 PRODUCT_PACKAGES += \
@@ -160,8 +160,8 @@ PRODUCT_PACKAGES += \
     libxml2
 
 # Stlport
-PRODUCT_PACKAGES += \
-    libstlport
+# PRODUCT_PACKAGES += \
+#    libstlport
 
 # Thermal
 PRODUCT_COPY_FILES += \

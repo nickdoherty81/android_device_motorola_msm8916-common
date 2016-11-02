@@ -98,6 +98,8 @@ TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
+USE_PREBUILT_LIBQSAP_SDK := true
+
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.qcom

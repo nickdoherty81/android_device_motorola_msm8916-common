@@ -60,6 +60,9 @@ BLUETOOTH_HCI_USE_MCT := true
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 
+# Charger
+CHARGER_DISABLE_INIT_BLANK := true
+
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 

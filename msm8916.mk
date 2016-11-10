@@ -77,8 +77,7 @@ PRODUCT_COPY_FILES +=  \
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8916 \
-    libbson \
-    libshim_camera
+    libbson
 
 # CMActions
 PRODUCT_PACKAGES += \
@@ -96,10 +95,6 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
     libebtc
-
-# DRM
-PRODUCT_PACKAGES += \
-    libshims_wvm
 
 # FM
 PRODUCT_PACKAGES += \

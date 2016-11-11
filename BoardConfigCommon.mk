@@ -60,12 +60,6 @@ BLUETOOTH_HCI_USE_MCT := true
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 
-# CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += \
-    $(VENDOR_PATH)/cmhw \
-    hardware/cyanogen/cmhw
-
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 
@@ -86,19 +80,17 @@ TARGET_INIT_VENDOR_LIB := libinit_msm
 # Keymaster
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
-# Lights
-#TARGET_PROVIDES_LIBLIGHT := true
-
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
+
+# Prebuilts Calls
+USE_PREBUILT_LIBQSAP_SDK := true
 
 # Properties
 TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
 
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
-
-USE_PREBUILT_LIBQSAP_SDK := true
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true

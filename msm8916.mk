@@ -103,13 +103,15 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8916
-
-PRODUCT_PACKAGES += \
+    gps.msm8916 \
     flp.conf \
     gps.conf \
     izat.conf \
     sap.conf
+
+# IMS
+PRODUCT_PACKAGES += \
+    libshims_ims
 
 # IRSC
 PRODUCT_COPY_FILES += \

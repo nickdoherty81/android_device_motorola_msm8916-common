@@ -139,3 +139,6 @@ ro.usb.bpteth_adb=0x2ec6
 ro.sys.fw.bservice_enable=true
 ro.sys.fw.bservice_limit=5
 ro.sys.fw.bservice_age=5000
+
+# Google Assistant
+ro.opa.eligible_device=true
